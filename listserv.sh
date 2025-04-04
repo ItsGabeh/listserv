@@ -10,9 +10,16 @@
 # Author: Sergio Gabriel Rodríguez Torres
 #
 # Services:
-# HTTP server
-# DNS server
-# DHCP server
+# DNS
+# DHCP
+# SSH
+# FTP
+# TFTP
+# NFS
+# HTTP
+# SMTP
+# IMAP
+# POP3
 
 # ======================================== #
 #                 DISTROS                  #
@@ -23,6 +30,7 @@ manjaro="ManjaroLinux"
 
 os=$(lsb_release -is)
 echo "OS ID: ${os}"
+
 
 # ======================================== #
 #                 DNS                      #
@@ -42,15 +50,20 @@ fi
 # ======================================== #
 #                 DHCP                     #
 # ======================================== #
+# For DHCP server we are using the official isc dhcp server
+# by default, the server name is isc-dhcp-server.service
 dhcp_server="isc-dhcp-server"
 
 if [[ ${os} == ${manjaro} ]]; then
     dhcp_server="kea-dhcp4" # isc-dhcp-server is deprecated in arch, hence, kea must be used
 fi
 
+
 # ======================================== #
 #                  SSH                     #
 # ======================================== #
+# For SSH server we are using the Open SSH implementation
+# by default, the server name is openssh-server.service
 ssh_server="openssh-server"
 
 if [[ ${os} == ${manjaro} ]]; then
@@ -61,6 +74,8 @@ fi
 # ======================================== #
 #                  FTP                     #
 # ======================================== #
+# For FTP we are using the "Very Secure" implementation of ftp
+# by default, the server name is vsftpd.service
 ftp_server="vsftpd"
 
 
@@ -68,6 +83,8 @@ ftp_server="vsftpd"
 # ======================================== #
 #                 TFTP                     #
 # ======================================== #
+# For TFTP we are using tftp-hpa
+# by default, the server name is tfpt-hpa.service
 tftp_server="tftp-hpa"
 
 if [[ ${os} == ${manjaro} ]]; then
@@ -78,7 +95,8 @@ fi
 # ======================================== #
 #                  NFS                     #
 # ======================================== #
-# TODO: check name for ubuntu
+# For NFS we are using nfs-kernel-server
+# by default, the server name is nfs-kernel-server.service
 nfs_server="nfs-kernel-service"
 
 if [[ ${os} == ${manjaro} ]]; then
@@ -87,10 +105,24 @@ fi
 
 
 # ======================================== #
+#                 HTTP                     #
+# ======================================== #
+# For HTTP server we are using apache http
+# by default, the apache server name is apache2.service
+# but it can change between distros
+http_server="apache2"
+
+if [[ ${os} == ${manjaro} ]]; then
+    http_server="httpd" # On arch linux based systems, this is the name of the package
+fi
+
+
+# ======================================== #
 #                  SMTP                    #
 # ======================================== #
+# For SMTP we are using postfix
+# by default, the server name is postfix.service
 smtp_server="postfix"
-
 
 
 # ======================================== #
@@ -107,19 +139,6 @@ smtp_server="postfix"
 
 # In the main section, on services array, add both variables
 imap_pop3_server="dovecot"
-
-
-# ======================================== #
-#                 HTTP                     #
-# ======================================== #
-# For HTTP server we are using apache http
-# by default, the apache server name is apache2.service
-# but it can change between distros
-http_server="apache2"
-
-if [[ ${os} == ${manjaro} ]]; then
-    http_server="httpd" # On arch linux based systems, this is the name of the package
-fi
 
 
 # ======================================== #
