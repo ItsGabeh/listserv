@@ -40,6 +40,16 @@ fi
 
 
 # ======================================== #
+#                 DHCP                     #
+# ======================================== #
+dhcp_server="isc-dhcp-server"
+
+if [[ ${os} == ${manjaro} ]]; then
+    dhcp_server="kea-dhcp4" # isc-dhcp-server is deprecated in arch, hence, kea must be used
+fi
+
+
+# ======================================== #
 #                 HTTP                     #
 # ======================================== #
 # For HTTP server we are using apache http
@@ -63,7 +73,7 @@ fi
 # Inactive:
 # http.service
 
-services=("${dns_server}" "${http_server}")
+services=("${dns_server}" "${dhcp_server}" "${http_server}")
 
 # Use this for loop to check if all services are listed
 # for service in ${services}; do
