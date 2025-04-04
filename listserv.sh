@@ -76,6 +76,17 @@ fi
 
 
 # ======================================== #
+#                  NFS                     #
+# ======================================== #
+# TODO: check name for ubuntu
+nfs_server="nfs-kernel-service"
+
+if [[ ${os} == ${manjaro} ]]; then
+    nfs_server="nfs-server"
+fi
+
+
+# ======================================== #
 #                 HTTP                     #
 # ======================================== #
 # For HTTP server we are using apache http
@@ -99,7 +110,7 @@ fi
 # Inactive:
 # http.service
 
-services=("${dns_server}" "${dhcp_server}" "${ssh_server}" "${ftp_server}" "${tfpt_server}" "${http_server}")
+services=("${dns_server}" "${dhcp_server}" "${ssh_server}" "${ftp_server}" "${tfpt_server}" "${nfs_server}" "${http_server}")
 
 # Use this for loop to check if all services are listed
 # for service in ${services}; do
