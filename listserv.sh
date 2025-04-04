@@ -157,19 +157,23 @@ services=("${dns_server}" "${dhcp_server}" "${ssh_server}" "${ftp_server}" "${tf
 #     echo ${services}
 # done
 
-echo "Active:"
+GREEN="\033[0;32m"
+RED="\033[0;31m"
+NC="\033[0m" # No color
+
+echo -e "${GREEN}Active:" # -e allows scape sequence
 for service in ${services[@]}; do
     if systemctl is-active --quiet "${service}"; then
-        echo "${service}"
+        echo -e "${NC}> ${service}"
     fi
 done
 
 echo ""
 
-echo "Inactive:"
+echo -e "${RED}Inactive:"
 for service in ${services[@]}; do
     if ! systemctl is-active --quiet "${service}"; then
-        echo "${service}"
+        echo -e "${NC}> ${service}"
     fi
 done
 
