@@ -87,6 +87,12 @@ fi
 
 
 # ======================================== #
+#                  SMTP                    #
+# ======================================== #
+smtp_server="postfix"
+
+
+# ======================================== #
 #                 HTTP                     #
 # ======================================== #
 # For HTTP server we are using apache http
@@ -110,7 +116,7 @@ fi
 # Inactive:
 # http.service
 
-services=("${dns_server}" "${dhcp_server}" "${ssh_server}" "${ftp_server}" "${tfpt_server}" "${nfs_server}" "${http_server}")
+services=("${dns_server}" "${dhcp_server}" "${ssh_server}" "${ftp_server}" "${tfpt_server}" "${nfs_server}" "${http_server}" "${smtp_server}" )
 
 # Use this for loop to check if all services are listed
 # for service in ${services}; do
