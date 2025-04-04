@@ -24,6 +24,20 @@ manjaro="ManjaroLinux"
 os=$(lsb_release -is)
 echo "OS ID: ${os}"
 
+# ======================================== #
+#                 DNS                      #
+# ======================================== #
+# For DNS server we are using bind9
+# by default, the server name is bind9.servcice
+# but also works with named.service
+#
+# On ubuntu, this service can be invoked with bind9
+dns_server="bind9"
+
+if [[ ${os} == ${manjaro} ]]; then
+    dns_server="named"
+fi
+
 
 # ======================================== #
 #                 HTTP                     #
@@ -49,10 +63,15 @@ fi
 # Inactive:
 # http.service
 
-services=( "${http_server}" )
+services=("${dns_server}" "${http_server}")
+
+# Use this for loop to check if all services are listed
+# for service in ${services}; do
+#     echo ${services}
+# done
 
 echo "Active:"
-for service in ${services}; do
+for service in ${services[@]}; do
     if systemctl is-active --quiet "${service}"; then
         echo "${service}"
     fi
@@ -61,7 +80,7 @@ done
 echo ""
 
 echo "Inactive:"
-for service in ${services}; do
+for service in ${services[@]}; do
     if ! systemctl is-active --quiet "${service}"; then
         echo "${service}"
     fi
