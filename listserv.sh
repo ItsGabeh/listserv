@@ -25,11 +25,9 @@
 #                 DISTROS                  #
 # ======================================== #
 # NOTE: if your distro is not here be free to modify it
-ubuntu="UbuntuLinux"
 manjaro="ManjaroLinux"
 
 os=$(lsb_release -is)
-echo "OS ID: ${os}"
 
 
 # ======================================== #
