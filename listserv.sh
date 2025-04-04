@@ -64,6 +64,17 @@ fi
 ftp_server="vsftpd"
 
 
+
+# ======================================== #
+#                 TFTP                     #
+# ======================================== #
+tftp_server="tftp-hpa"
+
+if [[ ${os} == ${manjaro} ]]; then
+    tfpt_server="tftpd" # On arch based systems, this is the name of the package
+fi
+
+
 # ======================================== #
 #                 HTTP                     #
 # ======================================== #
@@ -88,7 +99,7 @@ fi
 # Inactive:
 # http.service
 
-services=("${dns_server}" "${dhcp_server}" "${ssh_server}" "${ftp_server}" "${http_server}")
+services=("${dns_server}" "${dhcp_server}" "${ssh_server}" "${ftp_server}" "${tfpt_server}" "${http_server}")
 
 # Use this for loop to check if all services are listed
 # for service in ${services}; do
