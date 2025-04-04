@@ -97,7 +97,7 @@ fi
 # ======================================== #
 # For NFS we are using nfs-kernel-server
 # by default, the server name is nfs-kernel-server.service
-nfs_server="nfs-kernel-service"
+nfs_server="nfs-kernel-server"
 
 if [[ ${os} == ${manjaro} ]]; then
     nfs_server="nfs-server"
