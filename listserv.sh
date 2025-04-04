@@ -48,6 +48,21 @@ if [[ ${os} == ${manjaro} ]]; then
     dhcp_server="kea-dhcp4" # isc-dhcp-server is deprecated in arch, hence, kea must be used
 fi
 
+# ======================================== #
+#                  SSH                     #
+# ======================================== #
+ssh_server="openssh-server"
+
+if [[ ${os} == ${manjaro} ]]; then
+    ssh_server="sshd" # This is the name of the package on arch based systems
+fi
+
+
+# ======================================== #
+#                  FTP                     #
+# ======================================== #
+ftp_server="vsftpd"
+
 
 # ======================================== #
 #                 HTTP                     #
@@ -73,7 +88,7 @@ fi
 # Inactive:
 # http.service
 
-services=("${dns_server}" "${dhcp_server}" "${http_server}")
+services=("${dns_server}" "${dhcp_server}" "${ssh_server}" "${ftp_server}" "${http_server}")
 
 # Use this for loop to check if all services are listed
 # for service in ${services}; do
