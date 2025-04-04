@@ -92,6 +92,23 @@ fi
 smtp_server="postfix"
 
 
+
+# ======================================== #
+#              IMAP and POP3               #
+# ======================================== #
+# for imap and pop3 we are using dovecot
+# which includes both
+# if you are using different packages for this services
+# modify the script, declare both packages in this section
+
+# Example
+# imap_server="your_imap_server"
+# pop3_server="your_pop3_server"
+
+# In the main section, on services array, add both variables
+imap_pop3_server="dovecot"
+
+
 # ======================================== #
 #                 HTTP                     #
 # ======================================== #
@@ -116,7 +133,7 @@ fi
 # Inactive:
 # http.service
 
-services=("${dns_server}" "${dhcp_server}" "${ssh_server}" "${ftp_server}" "${tfpt_server}" "${nfs_server}" "${http_server}" "${smtp_server}" )
+services=("${dns_server}" "${dhcp_server}" "${ssh_server}" "${ftp_server}" "${tfpt_server}" "${nfs_server}" "${http_server}" "${smtp_server}" "${imap_pop3_server}" )
 
 # Use this for loop to check if all services are listed
 # for service in ${services}; do
